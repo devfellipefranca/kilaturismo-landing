@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kila Turismo - Agência de viagens especializada em pacotes turísticos nacionais e internacionais. Conheça nossos destinos e promoções exclusivas.">
+  <meta name="keywords" content="turismo, viagens, pacotes turísticos, destinos, férias, agência de viagens">
+  <title>Kila Turismo - Agência de Viagens</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/logo.svg') }}">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="{{ url_for('static', filename='images/logomarcakilaturismo.png') }}" alt="Logomarca Kila Turismo">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="nav nav-pills ms-auto">
+              <li class="nav-item"><a href="#destinos" class="nav-link">Destinos</a></li>
+              <li class="nav-item"><a href="#promocoes" class="nav-link">Promoções</a></li>
+              <li class="nav-item"><a href="{{ url_for('gallery') }}" class="nav-link">Galeria</a></li>
+              <li class="nav-item"><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
+              <li class="nav-item"><a href="#sobre" class="nav-link">Sobre</a></li>
+              <li class="nav-item"><a href="#contato" class="nav-link">Contato</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" style="background-image: url('https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+    <div class="container">
+      <!-- Mensagens Flash -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      
+      <div class="hero-content">
+        <h1>Explore o mundo com a Kila Turismo</h1>
+        <p>A Kila Turismo já está atuando no mercado há 19 anos, trabalhando cada dia mais para te proporcionar a melhor experiência da sua vida em cada destino. Venha fazer parte você também!</p>
+        <p class="fw-bold">Viaje bem, viaje Kila Turismo!</p>
+        <a href="#waitlist" class="btn btn-secondary btn-lg animate-pulse">Receba Ofertas Exclusivas</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Destinos Section -->
+  <section id="destinos" class="destinos">
+    <div class="container">
+      <h2>Destinos Populares</h2>
+      <p class="text-center mb-5">Conheça nossos destinos mais procurados e planeje sua próxima viagem dos sonhos com a Kila Turismo.</p>
+      
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="destino-card">
+            <div class="destino-img">
+              <img src="{{ url_for('static', filename='images/destinations/portoseguro.jpeg') }}" alt="Porto Seguro">
+            </div>
+            <div class="destino-info">
+              <h3>Porto Seguro</h3>
+              <p>Praias paradisíacas, história e muita diversão na cidade que foi o berço do Brasil.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="old-price">R$ 2.499</span>
+                  <div class="price">R$ 1.999</div>
+                </div>
+                <a href="#" class="btn btn-primary">Saiba mais</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+          <div class="destino-card">
+            <div class="destino-img">
+              <img src="https://images.unsplash.com/photo-1576487248805-cf45f6bcc67f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Fernando de Noronha">
+            </div>
+            <div class="destino-info">
+              <h3>Fernando de Noronha</h3>
+              <p>Paraíso natural com praias paradisíacas, águas cristalinas e vida marinha exuberante.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="old-price">R$ 5.999</span>
+                  <div class="price">R$ 4.799</div>
+                </div>
+                <a href="#" class="btn btn-primary">Saiba mais</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+          <div class="destino-card">
+            <div class="destino-img">
+              <img src="https://images.unsplash.com/photo-1619546952812-520e98064a52?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Gramado">
+            </div>
+            <div class="destino-info">
+              <h3>Gramado</h3>
+              <p>Cidade charmosa na Serra Gaúcha com arquitetura europeia, gastronomia de qualidade e atrações turísticas.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="old-price">R$ 2.299</span>
+                  <div class="price">R$ 1.899</div>
+                </div>
+                <a href="#" class="btn btn-primary">Saiba mais</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel -->
+      <div id="destinosCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://images.unsplash.com/photo-1612143764657-0b1738c6ecfb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" class="d-block w-100" alt="Praia de Ipanema">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Praias Brasileiras</h5>
+              <p>Conheça as maravilhosas praias do litoral brasileiro</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="https://images.unsplash.com/photo-1516306580123-e6e52b1b7b5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2026&q=80" alt="Paris">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Europa</h5>
+              <p>Descubra as maravilhas do velho continente</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="https://images.unsplash.com/photo-1535332371349-a5d229f49cb5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Chapada Diamantina">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Ecoturismo</h5>
+              <p>Aventure-se em meio à natureza exuberante do Brasil</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#destinosCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#destinosCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+
+      <div class="text-center mt-5">
+        <a href="#" class="btn btn-lg btn-primary">Ver todos os destinos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Promoções Section -->
+  <section id="promocoes" class="promocoes">
+    <div class="container">
+      <h2>Promoções Imperdíveis</h2>
+      <p class="text-center mb-5">Aproveite nossas ofertas exclusivas e garanta sua viagem com os melhores preços.</p>
+      
+      <div class="row">
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="destino-card position-relative">
+            <span class="promo-badge">30% OFF</span>
+            <div class="destino-img">
+              <img src="https://images.unsplash.com/photo-1533414417583-f0ab99151986?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Salvador">
+            </div>
+            <div class="destino-info">
+              <h3>Salvador - 5 dias</h3>
+              <p>Pacote completo para conhecer a capital baiana, com passeios pela cidade histórica e praias.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="old-price">R$ 2.999</span>
+                  <div class="price">R$ 2.099</div>
+                </div>
+                <a href="#" class="btn btn-primary">Reservar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="destino-card position-relative">
+            <span class="promo-badge">25% OFF</span>
+            <div class="destino-img">
+              <img src="https://images.unsplash.com/photo-1664478711535-fd3cc5d1a99a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Bonito">
+            </div>
+            <div class="destino-info">
+              <h3>Bonito - 7 dias</h3>
+              <p>Descubra as maravilhas naturais de Bonito, com flutuação em rios cristalinos e cachoeiras.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="old-price">R$ 3.499</span>
+                  <div class="price">R$ 2.599</div>
+                </div>
+                <a href="#" class="btn btn-primary">Reservar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="destino-card position-relative">
+            <span class="promo-badge">40% OFF</span>
+            <div class="destino-img">
+              <img src="https://images.unsplash.com/photo-1610409931989-4b1878596521?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Jericoacoara">
+            </div>
+            <div class="destino-info">
+              <h3>Jericoacoara - 6 dias</h3>
+              <p>Visite uma das praias mais belas do Brasil, com dunas, lagoas e o famoso pôr do sol na Duna do Pôr do Sol.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="old-price">R$ 4.299</span>
+                  <div class="price">R$ 2.599</div>
+                </div>
+                <a href="#" class="btn btn-primary">Reservar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galeria Section -->
+  <section id="galeria" class="galeria">
+    <div class="container">
+      <h2>Galeria de Fotos</h2>
+      <p class="text-center mb-5">Conheça as experiências dos nossos clientes em destinos incríveis por todo o mundo.</p>
+      
+      <div class="row">
+        {% if featured_photos %}
+          {% for photo in featured_photos %}
+          <div class="col-md-6 col-lg-3 mb-4">
+            <div class="destino-card photo-card">
+              <div class="destino-img">
+                <img src="{{ photo.image_url }}" alt="{{ photo.title }}">
+              </div>
+              <div class="destino-info">
+                <h3>{{ photo.title }}</h3>
+                <p><i class="fas fa-map-marker-alt me-2"></i>{{ photo.destination }}</p>
+                <p><i class="fas fa-user me-2"></i>{{ photo.client_name }}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="col-12 text-center">
+            <p class="text-muted">Em breve, fotos incríveis dos nossos clientes serão exibidas aqui!</p>
+          </div>
+        {% endif %}
+      </div>
+      
+      <div class="text-center mt-4">
+        <a href="{{ url_for('gallery') }}" class="btn btn-lg btn-primary">Ver galeria completa</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Waitlist Section -->
+  <section id="waitlist" class="waitlist">
+    <div class="container">
+      <h2>Inscreva-se para Ofertas Exclusivas</h2>
+      <p class="mb-5">Receba em primeira mão nossas promoções exclusivas, pacotes especiais e dicas de viagem.</p>
+      
+      <div class="waitlist-form">
+        <form id="waitlistForm" action="{{ url_for('subscribe_waitlist') }}" method="POST">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <input type="text" class="form-control" id="waitlist-nome" name="waitlist-nome" placeholder="Seu nome" required>
+            </div>
+            <div class="col-md-6">
+              <input type="email" class="form-control" id="waitlist-email" name="waitlist-email" placeholder="Seu email" required>
+            </div>
+            <div class="col-12 mt-4">
+              <button type="submit" class="btn btn-lg btn-secondary w-100">Quero receber ofertas exclusivas</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Depoimentos Section -->
+  <section id="depoimentos" class="depoimentos">
+    <div class="container">
+      <h2>O que Dizem Nossos Clientes</h2>
+      <p class="text-center mb-5">Confira os depoimentos de quem já viajou com a Kila Turismo e teve experiências inesquecíveis.</p>
+      
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="testimonial-card animated">
+            <p>"Minha viagem para Fernando de Noronha foi perfeita! A Kila Turismo cuidou de todos os detalhes, desde as passagens até as reservas de passeios. Vou recomendar para todos os meus amigos!"</p>
+            <div class="client-info">
+              <i class="fa-solid fa-user-circle fa-3x text-secondary"></i>
+              <div class="ms-3">
+                <div class="client-name">Ana Souza</div>
+                <div class="client-role">Professora</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+          <div class="testimonial-card animated">
+            <p>"Viajamos em família para Gramado e foi uma experiência incrível! O roteiro estava perfeito, o hotel excelente e o atendimento da Kila Turismo foi excepcional do início ao fim."</p>
+            <div class="client-info">
+              <i class="fa-solid fa-user-circle fa-3x text-secondary"></i>
+              <div class="ms-3">
+                <div class="client-name">Carlos Oliveira</div>
+                <div class="client-role">Engenheiro</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+          <div class="testimonial-card animated">
+            <p>"A equipe da Kila Turismo está de parabéns! Minha viagem para o Rio de Janeiro foi muito melhor do que eu esperava. Ótimo atendimento, preços justos e tudo ocorreu conforme o planejado."</p>
+            <div class="client-info">
+              <i class="fa-solid fa-user-circle fa-3x text-secondary"></i>
+              <div class="ms-3">
+                <div class="client-name">Mariana Santos</div>
+                <div class="client-role">Advogada</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sobre Section -->
+  <section id="sobre" class="sobre">
+    <div class="container">
+      <h2>Sobre Nós</h2>
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <div class="sobre-img">
+            <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Equipe Kila Turismo">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <h3>Kila Turismo - Sua agência de confiança</h3>
+          <p>Fundada em 2006, a Kila Turismo já está atuando no mercado há 19 anos e se consolidou como uma das principais agências de viagem do Brasil, oferecendo serviços de alta qualidade e pacotes personalizados para diversos destinos nacionais e internacionais.</p>
+          <p>Nossa missão é proporcionar experiências inesquecíveis, cuidando de cada detalhe para que você possa aproveitar ao máximo sua viagem dos sonhos. Contamos com uma equipe experiente e apaixonada por turismo, pronta para atender e superar suas expectativas.</p>
+          
+          <div class="features">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-check"></i>
+              </div>
+              <div>
+                <h4>Atendimento Personalizado</h4>
+                <p>Compreendemos as necessidades individuais de cada cliente e oferecemos soluções personalizadas.</p>
+              </div>
+            </div>
+            
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <div>
+                <h4>Segurança e Confiabilidade</h4>
+                <p>Trabalhamos apenas com fornecedores credenciados, garantindo a segurança e tranquilidade durante toda a sua viagem.</p>
+              </div>
+            </div>
+            
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-tag"></i>
+              </div>
+              <div>
+                <h4>Preços Competitivos</h4>
+                <p>Oferecemos as melhores condições do mercado, com pacotes que cabem no seu bolso sem abrir mão da qualidade.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato Section -->
+  <section id="contato" class="contato">
+    <div class="container">
+      <h2>Entre em Contato</h2>
+      <p class="text-center mb-5">Estamos à disposição para tirar suas dúvidas, receber sugestões e ajudar a planejar sua próxima viagem.</p>
+      
+      <div class="row">
+        <div class="col-lg-5 mb-4 mb-lg-0">
+          <div class="contato-info">
+            <div class="contato-item">
+              <div class="contato-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div>
+                <h4>Endereço</h4>
+                <p>Rua Santiago Piacenza, 596, Lourdes<br>Montes Claros - MG, 39401-691, Brasil</p>
+              </div>
+            </div>
+            
+            <div class="contato-item">
+              <div class="contato-icon">
+                <i class="fas fa-phone-alt"></i>
+              </div>
+              <div>
+                <h4>Telefone</h4>
+                <p>Pedro Ivo: +55 38 99850-2112<br>Kila: +55 38 99121-3864</p>
+              </div>
+            </div>
+            
+            <div class="contato-item">
+              <div class="contato-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <h4>Email</h4>
+                <p>contato@kilaturismo.com.br<br>atendimento@kilaturismo.com.br</p>
+              </div>
+            </div>
+            
+            <div class="contato-item">
+              <div class="contato-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div>
+                <h4>Horário de Atendimento</h4>
+                <p>Segunda a Sexta: 9h às 18h<br>Sábado: 9h às 13h</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="map-container mt-4">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3820.2800290633077!2d-43.868522824881086!3d-16.748407722021497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x754ab3042a6be03%3A0x9f0fb382da9f5ac7!2sR.%20Santiago%20Piacenza%2C%20596%20-%20Lourdes%2C%20Montes%20Claros%20-%20MG%2C%2039401-691!5e0!3m2!1spt-BR!2sbr!4v1711805000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+        
+        <div class="col-lg-7">
+          <div class="form-container">
+            <form id="contactForm" method="post" action="{{ url_for('submit_contact') }}">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="nome" class="form-label">Nome</label>
+                  <input type="text" class="form-control" id="nome" name="nome" placeholder="Seu nome" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="email" class="form-label">E-mail</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="telefone" class="form-label">Telefone</label>
+                  <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="(00) 00000-0000">
+                </div>
+                <div class="col-md-6">
+                  <label for="assunto" class="form-label">Assunto</label>
+                  <select class="form-select" id="assunto" name="assunto" required>
+                    <option value="" selected disabled>Selecione o assunto</option>
+                    <option value="Informações">Informações sobre pacotes</option>
+                    <option value="Reserva">Fazer uma reserva</option>
+                    <option value="Cancelamento">Cancelamento</option>
+                    <option value="Reclamação">Reclamação</option>
+                    <option value="Outro">Outro</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label for="mensagem" class="form-label">Mensagem</label>
+                  <textarea class="form-control" id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem" required></textarea>
+                </div>
+                <div class="col-12 mt-4">
+                  <button type="submit" class="btn btn-lg btn-primary">Enviar Mensagem</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-4 mb-lg-0">
+          <div class="footer-logo">
+            <img src="{{ url_for('static', filename='images/logomarcakilaturismo.png') }}" alt="Logomarca Kila Turismo">
+          </div>
+          <p>A Kila Turismo é sua parceira para descobrir o mundo. Com 19 anos de experiência, oferecemos os melhores pacotes turísticos para destinos nacionais e internacionais.</p>
+          <div class="social-links">
+            <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="{{ url_for('redirect_to_whatsapp') }}" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+          <div class="footer-links">
+            <h5>Links Rápidos</h5>
+            <ul>
+              <li><a href="#destinos">Destinos</a></li>
+              <li><a href="#promocoes">Promoções</a></li>
+              <li><a href="{{ url_for('gallery') }}">Galeria</a></li>
+              <li><a href="#depoimentos">Depoimentos</a></li>
+              <li><a href="#sobre">Sobre Nós</a></li>
+              <li><a href="#contato">Contato</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <div class="footer-links">
+            <h5>Destinos Populares</h5>
+            <ul>
+              <li><a href="#">Rio de Janeiro</a></li>
+              <li><a href="#">Fernando de Noronha</a></li>
+              <li><a href="#">Gramado</a></li>
+              <li><a href="#">Jericoacoara</a></li>
+              <li><a href="#">Salvador</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-links">
+            <h5>Informações</h5>
+            <ul>
+              <li><a href="#">Formas de Pagamento</a></li>
+              <li><a href="#">Política de Privacidade</a></li>
+              <li><a href="#">Termos e Condições</a></li>
+              <li><a href="#">Política de Cancelamento</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2025 Kila Turismo - Todos os direitos reservados. | Desenvolvido por <span class="signature">faftechnologies</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JS -->
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

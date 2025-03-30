@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Galeria de Fotos Kila Turismo - Veja as experiências dos nossos clientes em diversos destinos turísticos.">
+  <meta name="keywords" content="turismo, viagens, fotos, galeria, experiências, clientes, pacotes turísticos">
+  <title>Galeria de Fotos - Kila Turismo</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/logo.svg') }}">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  
+  <style>
+    .gallery-header {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1540339832862-85c2593fa6ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+        background-size: cover;
+        background-position: center;
+        padding: 100px 0;
+        margin-bottom: 60px;
+        text-align: center;
+        color: white;
+    }
+    
+    .gallery-header h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+    
+    .gallery-header p {
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .photo-card {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        margin-bottom: 30px;
+        height: 100%;
+    }
+    
+    .photo-card:hover {
+        transform: translateY(-10px);
+    }
+    
+    .photo-img {
+        height: 250px;
+        overflow: hidden;
+    }
+    
+    .photo-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .photo-card:hover .photo-img img {
+        transform: scale(1.1);
+    }
+    
+    .photo-info {
+        padding: 20px;
+        background-color: white;
+    }
+    
+    .photo-info h3 {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+        color: #333;
+    }
+    
+    .photo-meta {
+        display: flex;
+        justify-content: space-between;
+        color: #777;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+    
+    .photo-desc {
+        color: #555;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    
+    /* Destination badge */
+    .destination-badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background-color: rgba(255, 140, 0, 0.9);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+    
+    .gallery-filters {
+        margin-bottom: 40px;
+    }
+    
+    .filter-btn {
+        margin-right: 10px;
+        margin-bottom: 10px;
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        color: #333;
+        padding: 8px 15px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+    }
+    
+    .filter-btn:hover,
+    .filter-btn.active {
+        background-color: #ff8c00;
+        color: white;
+        border-color: #ff8c00;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='images/logomarcakilaturismo.png') }}" alt="Logomarca Kila Turismo">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="nav nav-pills ms-auto">
+              <li class="nav-item"><a href="{{ url_for('index') }}#destinos" class="nav-link">Destinos</a></li>
+              <li class="nav-item"><a href="{{ url_for('index') }}#promocoes" class="nav-link">Promoções</a></li>
+              <li class="nav-item"><a href="{{ url_for('gallery') }}" class="nav-link active">Galeria</a></li>
+              <li class="nav-item"><a href="{{ url_for('index') }}#depoimentos" class="nav-link">Depoimentos</a></li>
+              <li class="nav-item"><a href="{{ url_for('index') }}#sobre" class="nav-link">Sobre</a></li>
+              <li class="nav-item"><a href="{{ url_for('index') }}#contato" class="nav-link">Contato</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mensagens Flash -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="container mt-3">
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <!-- Gallery Header Section -->
+  <section class="gallery-header">
+    <div class="container">
+      <h1>Galeria de Fotos</h1>
+      <p>Explore as experiências inesquecíveis dos nossos clientes nos melhores destinos turísticos. Cada foto conta uma história de aventura, felicidade e momentos especiais. Veja o que você também pode viver com a Kila Turismo!</p>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery-section py-5">
+    <div class="container">
+      {% if photos %}
+        <div class="row">
+          {% for photo in photos %}
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="photo-card position-relative">
+                <div class="photo-img">
+                  <img src="{{ photo.image_url }}" alt="{{ photo.title }}">
+                  <div class="destination-badge">{{ photo.destination }}</div>
+                </div>
+                <div class="photo-info">
+                  <h3>{{ photo.title }}</h3>
+                  <div class="photo-meta">
+                    <span><i class="fas fa-user me-1"></i> {{ photo.client_name }}</span>
+                    <span><i class="fas fa-calendar-alt me-1"></i> {{ photo.created_at.strftime('%d/%m/%Y') }}</span>
+                  </div>
+                  {% if photo.description %}
+                    <p class="photo-desc">{{ photo.description }}</p>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="text-center py-5">
+          <i class="fas fa-camera-retro fa-4x mb-3 text-muted"></i>
+          <h3>Galeria em construção</h3>
+          <p class="text-muted">Em breve, novas fotos das experiências dos nossos clientes serão adicionadas aqui.</p>
+          <a href="{{ url_for('index') }}" class="btn btn-primary mt-3">Voltar para o Início</a>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta py-5 bg-light">
+    <div class="container text-center">
+      <h2>Faça parte da nossa galeria</h2>
+      <p class="mb-4">Viaje com a Kila Turismo, compartilhe suas fotos conosco e apareça em nossa galeria de clientes satisfeitos!</p>
+      <a href="{{ url_for('index') }}#contato" class="btn btn-lg btn-primary">Entre em Contato</a>
+      <a href="{{ url_for('redirect_to_whatsapp') }}" class="btn btn-lg btn-success ms-2">
+        <i class="fab fa-whatsapp me-2"></i> Fale pelo WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-4 mb-lg-0">
+          <div class="footer-logo">
+            <img src="{{ url_for('static', filename='images/logomarcakilaturismo.png') }}" alt="Logomarca Kila Turismo">
+          </div>
+          <p>A Kila Turismo é sua parceira para descobrir o mundo. Com 19 anos de experiência, oferecemos os melhores pacotes turísticos para destinos nacionais e internacionais.</p>
+          <div class="social-links">
+            <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="{{ url_for('redirect_to_whatsapp') }}" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+          <div class="footer-links">
+            <h5>Links Rápidos</h5>
+            <ul>
+              <li><a href="{{ url_for('index') }}#destinos">Destinos</a></li>
+              <li><a href="{{ url_for('index') }}#promocoes">Promoções</a></li>
+              <li><a href="{{ url_for('gallery') }}">Galeria</a></li>
+              <li><a href="{{ url_for('index') }}#depoimentos">Depoimentos</a></li>
+              <li><a href="{{ url_for('index') }}#sobre">Sobre Nós</a></li>
+              <li><a href="{{ url_for('index') }}#contato">Contato</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <div class="footer-links">
+            <h5>Destinos Populares</h5>
+            <ul>
+              <li><a href="#">Porto Seguro</a></li>
+              <li><a href="#">Fernando de Noronha</a></li>
+              <li><a href="#">Gramado</a></li>
+              <li><a href="#">Jericoacoara</a></li>
+              <li><a href="#">Salvador</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-links">
+            <h5>Informações</h5>
+            <ul>
+              <li><a href="#">Formas de Pagamento</a></li>
+              <li><a href="#">Política de Privacidade</a></li>
+              <li><a href="#">Termos e Condições</a></li>
+              <li><a href="#">Política de Cancelamento</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2025 Kila Turismo - Todos os direitos reservados. | Desenvolvido por <span class="signature">faftechnologies</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JS -->
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

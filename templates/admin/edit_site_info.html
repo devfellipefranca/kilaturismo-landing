@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações do Site - Kila Turismo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 48px 0 0;
+            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+            background-color: #343a40;
+        }
+        .sidebar-sticky {
+            position: relative;
+            top: 0;
+            height: calc(100vh - 48px);
+            padding-top: 0.5rem;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .sidebar .nav-link {
+            font-weight: 500;
+            color: #fff;
+            padding: 0.75rem 1rem;
+        }
+        .sidebar .nav-link:hover {
+            color: #ff8c00;
+        }
+        .sidebar .nav-link.active {
+            color: #ff8c00;
+            background-color: rgba(255, 140, 0, 0.1);
+        }
+        main {
+            padding-top: 48px;
+        }
+        .navbar {
+            background-color: #ff8c00 !important;
+        }
+        .btn-orange {
+            background-color: #ff8c00;
+            border-color: #ff8c00;
+            color: white;
+        }
+        .btn-orange:hover {
+            background-color: #e67e00;
+            border-color: #e67e00;
+            color: white;
+        }
+        .section-title {
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+            color: #ff8c00;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{ url_for('admin_dashboard') }}">
+            Kila Turismo Admin
+        </a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="w-100"></div>
+        <div class="navbar-nav">
+            <div class="nav-item text-nowrap">
+                <a class="nav-link px-3" href="{{ url_for('logout') }}">Sair</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
+                <div class="position-sticky sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('admin_dashboard') }}">
+                                <i class="bi bi-speedometer2 me-2"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('admin_destinations') }}">
+                                <i class="bi bi-map me-2"></i>
+                                Destinos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('admin_client_photos') }}">
+                                <i class="bi bi-images me-2"></i>
+                                Fotos dos Clientes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ url_for('edit_site_info') }}">
+                                <i class="bi bi-gear me-2"></i>
+                                Configurações
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Configurações do Site</h1>
+                </div>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <form method="POST" action="{{ url_for('edit_site_info') }}">
+                                    <h4 class="section-title">Informações Gerais</h4>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="site_name" class="form-label">Nome do Site</label>
+                                                <input type="text" class="form-control" id="site_name" name="site_name" value="{{ site_info.site_name }}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="slogan" class="form-label">Slogan</label>
+                                                <input type="text" class="form-control" id="slogan" name="slogan" value="{{ site_info.slogan }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email de Contato</label>
+                                        <input type="email" class="form-control" id="email" name="email" value="{{ site_info.email }}" required>
+                                    </div>
+
+                                    <h4 class="section-title">Informações de Contato</h4>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="phone1_name" class="form-label">Nome Contato 1</label>
+                                                <input type="text" class="form-control" id="phone1_name" name="phone1_name" value="{{ site_info.phone1_name }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="phone1" class="form-label">Telefone Contato 1</label>
+                                                <input type="text" class="form-control" id="phone1" name="phone1" value="{{ site_info.phone1 }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="phone2_name" class="form-label">Nome Contato 2</label>
+                                                <input type="text" class="form-control" id="phone2_name" name="phone2_name" value="{{ site_info.phone2_name }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="phone2" class="form-label">Telefone Contato 2</label>
+                                                <input type="text" class="form-control" id="phone2" name="phone2" value="{{ site_info.phone2 }}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h4 class="section-title">Endereço</h4>
+                                    <div class="mb-3">
+                                        <label for="address" class="form-label">Endereço</label>
+                                        <input type="text" class="form-control" id="address" name="address" value="{{ site_info.address }}">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="city" class="form-label">Cidade</label>
+                                                <input type="text" class="form-control" id="city" name="city" value="{{ site_info.city }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="mb-3">
+                                                <label for="state" class="form-label">Estado</label>
+                                                <input type="text" class="form-control" id="state" name="state" value="{{ site_info.state }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="mb-3">
+                                                <label for="zipcode" class="form-label">CEP</label>
+                                                <input type="text" class="form-control" id="zipcode" name="zipcode" value="{{ site_info.zipcode }}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h4 class="section-title">Redes Sociais</h4>
+                                    <div class="mb-3">
+                                        <label for="whatsapp" class="form-label">WhatsApp (formato: 5538998502112)</label>
+                                        <input type="text" class="form-control" id="whatsapp" name="whatsapp" value="{{ site_info.whatsapp }}">
+                                        <div class="form-text">Informe o número completo com código do país (55) e DDD, sem espaços ou caracteres especiais.</div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between mt-4">
+                                        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Cancelar</a>
+                                        <button type="submit" class="btn btn-orange">Salvar Alterações</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                Informações Importantes
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Dicas para Configuração</h5>
+                                <ul>
+                                    <li class="mb-2">O nome do site e o slogan aparecem no topo da página.</li>
+                                    <li class="mb-2">O email de contato é usado para receber notificações e aparecer em páginas de contato.</li>
+                                    <li class="mb-2">Telefones de contato são exibidos na seção de contato e no rodapé.</li>
+                                    <li class="mb-2">O endereço completo aparece no rodapé do site.</li>
+                                    <li class="mb-2">O número de WhatsApp deve estar no formato internacional (ex: 5538998502112) para funcionar corretamente no link de redirecionamento.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

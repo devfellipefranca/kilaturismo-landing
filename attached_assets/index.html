@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kila Turismo - Agência de Viagens</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <style>
+    :root {
+      --primary-color: #FF5A5F;
+      --secondary-color: #00A699;
+      --background-light: #FFFAF1;
+    }
+
+    body {
+      background-color: var(--background-light);
+    }
+
+    header {
+      background-color: var(--primary-color);
+    }
+
+    h2 {
+      color: var(--primary-color);
+    }
+
+    footer {
+      background-color: #484848;
+    }
+
+    .nav-pills .nav-link.active {
+      background-color: var(--secondary-color);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="text-white py-4">
+    <div class="container text-center">
+      <a href="#" class="d-flex flex-column align-items-center">
+        <img src="./imgs/logomarcakilaturismo.png" alt="Logomarca Kila Turismo" style="height: 200px;">
+        
+      </a>
+      <nav class="mt-4">
+        <ul class="nav nav-pills justify-content-center">
+          <li class="nav-item"><a href="#destinos" class="nav-link active">Destinos</a></li>
+          <li class="nav-item"><a href="#sobre" class="nav-link">Sobre</a></li>
+          <li class="nav-item"><a href="#contato" class="nav-link">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Body -->
+  <section id="destinos" class="py-5">
+    <div class="container text-center">
+      <h2>Destinos Populares</h2>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic itaque tempora tenetur repudiandae possimus vitae facilis vero recusandae minus, blanditiis doloribus accusantium culpa, fugit ratione similique tempore? Molestias, quam vel?</p>
+
+      <!-- Carousel -->
+      <div id="destinosCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://media.istockphoto.com/id/533236170/pt/foto/maresias.jpg?s=612x612&w=0&k=20&c=6nlu21qlN63lrmI4z46SsSnUcJOhFBAM33WAP1NeC4c=" class="d-block w-100" alt="Destino 1">
+          </div>
+          <div class="carousel-item">
+            <img src="https://media.istockphoto.com/id/533236170/pt/foto/maresias.jpg?s=612x612&w=0&k=20&c=6nlu21qlN63lrmI4z46SsSnUcJOhFBAM33WAP1NeC4c=" class="d-block w-100" alt="Destino 2">
+          </div>
+          <div class="carousel-item">
+            <img src="https://media.istockphoto.com/id/533236170/pt/foto/maresias.jpg?s=612x612&w=0&k=20&c=6nlu21qlN63lrmI4z46SsSnUcJOhFBAM33WAP1NeC4c=" class="d-block w-100" alt="Destino 3">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#destinosCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#destinosCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre" class="py-5">
+    <div class="container text-center">
+      <h2>Sobre Nós</h2>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error cupiditate repellat magni est tempora dolor facilis optio dicta corporis autem libero ea amet neque commodi aperiam, veritatis repellendus! Obcaecati, odio.</p>
+    </div>
+  </section>
+
+  <section id="contato" class="py-5 bg-light">
+    <div class="container text-center">
+      <h2>Entre em Contato</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quos unde eveniet laboriosam sint minus voluptatibus tenetur quisquam nihil molestias? Doloremque totam debitis inventore, numquam aliquam rerum veniam unde molestiae!</p>
+
+      <!-- Formulário -->
+      <form class="row g-3 justify-content-center">
+        <div class="col-md-6">
+          <label for="nome" class="form-label">Nome</label>
+          <input type="text" class="form-control" id="nome" placeholder="Seu nome" required>
+        </div>
+        <div class="col-md-6">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="email" class="form-control" id="email" placeholder="seuemail@example.com" required>
+        </div>
+        <div class="col-12">
+          <label for="mensagem" class="form-label">Mensagem</label>
+          <textarea class="form-control" id="mensagem" rows="4" placeholder="Escreva sua mensagem" required></textarea>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-white text-center py-4">
+    <div class="container">
+      <p>&copy; 2025 Kila Turismo Agência de Viagens - Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

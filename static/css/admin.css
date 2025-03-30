@@ -1,0 +1,111 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 48px 0 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    background-color: #343a40;
+}
+
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: 0.5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.sidebar .nav-link {
+    font-weight: 500;
+    color: #fff;
+    padding: 0.75rem 1rem;
+}
+
+.sidebar .nav-link:hover {
+    color: #ff8c00;
+}
+
+.sidebar .nav-link.active {
+    color: #ff8c00;
+    background-color: rgba(255, 140, 0, 0.1);
+}
+
+main {
+    padding-top: 48px;
+}
+
+.navbar {
+    background-color: #ff8c00 !important;
+}
+
+.btn-orange {
+    background-color: #ff8c00;
+    border-color: #ff8c00;
+    color: white;
+}
+
+.btn-orange:hover {
+    background-color: #e67e00;
+    border-color: #e67e00;
+    color: white;
+}
+
+.form-check-input:checked {
+    background-color: #ff8c00;
+    border-color: #ff8c00;
+}
+
+.login-container {
+    max-width: 400px;
+    width: 100%;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo img {
+    max-width: 150px;
+    height: auto;
+}
+
+.section-title {
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+    color: #ff8c00;
+}
+
+.destination-card {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.destination-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.destination-price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ff8c00;
+}
+
+.destination-old-price {
+    text-decoration: line-through;
+    color: #6c757d;
+    font-size: 0.9em;
+}

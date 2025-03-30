@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150">
+  <style>
+    .kila-blue { fill: #2d6db0; }
+    .kila-green { fill: #6ebb45; }
+    .kila-yellow { fill: #e9ff54; }
+    .text { font-family: 'Arial', sans-serif; font-weight: bold; }
+    .main-text { font-size: 48px; }
+    .sub-text { font-size: 18px; }
+  </style>
+  
+  <!-- Logo Shape - Letter K stylized -->
+  <g transform="translate(60, 20)">
+    <!-- Yellow arc -->
+    <path class="kila-yellow" d="M0,0 A50,50 0 0,1 50,50 L30,50 A30,30 0 0,0 0,20 Z" />
+    
+    <!-- Green arc -->
+    <path class="kila-green" d="M50,0 A50,50 0 0,1 100,50 L80,50 A30,30 0 0,0 50,20 Z" />
+    
+    <!-- Blue vertical -->
+    <rect class="kila-blue" x="35" y="50" width="30" height="60" />
+    
+    <!-- Blue arc -->
+    <path class="kila-blue" d="M65,50 A50,50 0 0,1 115,100 L95,100 A30,30 0 0,0 65,70 Z" />
+  </g>
+  
+  <!-- Text -->
+  <text x="150" y="110" class="text main-text kila-blue" text-anchor="middle">Kila Turismo</text>
+  <text x="150" y="135" class="text sub-text kila-blue" text-anchor="middle">AGÊNCIA DE VIAGENS</text>
+</svg>
